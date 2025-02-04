@@ -13,6 +13,10 @@
             background-color: rgb(189, 225, 122);
         }
 
+        .container {
+            position: relative;
+        }
+
         #noButton {
             position: absolute;
             margin-left: 150px;
@@ -105,7 +109,7 @@
             <h1 class="header_text">Are you free tomorrow?</h1>
         </div>
         <div class="gif_container">
-            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute animated illustration">
+            <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDdtZ2JiZDR0a3lvMWF4OG8yc3p6Ymdvd3g2d245amdveDhyYmx6eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Asking gif">
         </div>
         <div class="buttons">
             <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
@@ -129,10 +133,16 @@
         }
 
         function moveButton() {
-            var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
-            var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
-            document.getElementById('noButton').style.left = `${x}px`;
-            document.getElementById('noButton').style.top = `${y}px`;
+            var noButton = document.getElementById('noButton');
+            var container = noButton.parentElement;
+            var containerRect = container.getBoundingClientRect();
+            var buttonRect = noButton.getBoundingClientRect();
+
+            var x = Math.random() * (containerRect.width - buttonRect.width);
+            var y = Math.random() * (containerRect.height - buttonRect.height);
+
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
         }
     </script>
 </body>
